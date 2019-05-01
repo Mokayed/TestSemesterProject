@@ -166,3 +166,4 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+/nbproject/
