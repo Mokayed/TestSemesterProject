@@ -3,15 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Entities;
+package interfaces;
 
 /**
  *
  * @author hallur
  */
-public class Student extends User{
-
-  
-    public void getSomething(){};
-    
+public interface semesterFunctions {
+    int daysUntilDeadLine();
 }

@@ -9,9 +9,12 @@ package Entities;
  *
  * @author hallur
  */
-public class Student extends User{
+public class DeleteLater {
+    public static void main(String[] args){
 
-  
-    public void getSomething(){};
-    
+       Student student = new Student();
+       User[] usersForLogin = null;
+       usersForLogin[0] = student;
+       
+    }
 }
