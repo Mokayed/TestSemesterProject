@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Wrong login</h1>
+        <h1 name="inv">Wrong login</h1>
     </body>
 </html>
