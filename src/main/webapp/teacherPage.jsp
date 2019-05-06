@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello from teacher</h1>
+        <h1 name="user">Teacher</h1>
     </body>
 </html>

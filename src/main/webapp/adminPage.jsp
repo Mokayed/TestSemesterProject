@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello from Admin</h1>
+       <h1 name="user">Admin</h1>
     </body>
 </html>

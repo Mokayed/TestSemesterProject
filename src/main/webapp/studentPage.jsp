@@ -12,7 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello from student</h1>
-        <h1 id="studentName"></h1>
+    <h1 name="user">Student</h1>
     </body>
 </html>
