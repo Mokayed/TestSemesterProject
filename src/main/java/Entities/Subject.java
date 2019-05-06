@@ -1,7 +1,7 @@
 package Entities;
 
 public class Subject {
-    
+
     private String name;
     private Category category;
     private int semestersOffered;
@@ -35,5 +35,5 @@ public class Subject {
     public void setSemestersOffered(int semestersOffered) {
         this.semestersOffered = semestersOffered;
     }
-    
+
 }

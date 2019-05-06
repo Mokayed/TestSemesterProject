@@ -9,5 +9,5 @@ package Entities;
  *
  * @author hallur
  */
-public class Admin {
+public class Admin extends User{
 }
