@@ -4,11 +4,6 @@
  * and open the template in the editor.
  */
 package Entities;
-
-/**
- *
- * @author Mok
- */
 public class User {
 
     private String role;
@@ -18,6 +13,11 @@ public class User {
     private String teacherExperiance;
     private int studentAge;
     private boolean studentPayment;
+
+    public User() {
+    }
+    
+    
 
     public User(String role, String userName, String password) {
         this.role = role;

@@ -9,7 +9,9 @@ package Entities;
  *
  * @author hallur
  */
-public class Student{
-       private int age;
-       public void getAge(){};
+public class Student extends User{
+
+  
+    public void getSomething(){};
+    
 }

@@ -30,7 +30,7 @@ public class LoginTests {
     @Test
     public void navigatePage() {
         list.add(new User("Teacher", "Kasper", "321", "20-05-2010", "experiance in danish langouge"));
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\MoK\\Downloads\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/chromedriver");
         driver = new ChromeDriver();
         driver.get("http://localhost:8080/TestSemesterProject/");
         driver.findElement(By.name("un")).sendKeys(list.get(0).getUserName());
