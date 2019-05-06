@@ -25,12 +25,12 @@ public class PlanningSeleniumTests {
 
     @Given("^user navigates to the teacher page$")
     public void navigatePage() {
-        System.setProperty("webdriver.chrome.driver", "/home/hallur/NetBeansProjects/TestSemesterProject/chromedriver");
+        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/chromedriver");
         driver = new ChromeDriver();
         driver.get("http://localhost:8080/TestSemesterProject/teacherPage.jsp");
     }
     @When("user clicks on 'see planning period'")
-    public void pickPizza() {
+    public void clickBtn() {
         driver.findElement(By.id("planBtn")).click();
         String answ = driver.findElement(By.id("here")).getText();
         assertThat("when we can login with the teacher object, i can then setup the dates on this page", IsEqual.equalTo(answ));

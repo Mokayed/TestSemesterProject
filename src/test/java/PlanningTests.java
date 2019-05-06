@@ -92,6 +92,7 @@ public class PlanningTests {
         tCalendar.setTime(teacher.getCurrentDate()); //1
         long diff = sCalendar.getTime().getTime() - tCalendar.getTime().getTime();
         int daysUntilDeadLine = (int) (diff / (1000 * 60 * 60 * 24));
+        System.out.println("you have " + daysUntilDeadLine + " days left");
         assertThat(30, equalTo(daysUntilDeadLine));
     }
 }

@@ -24,17 +24,9 @@ formatter.step({
   "keyword": "* "
 });
 formatter.match({
-  "location": "PlanningSeleniumTests.pickPizza()"
+  "location": "PlanningSeleniumTests.clickBtn()"
 });
 formatter.result({
   "status": "passed"
-});
-formatter.step({
-  "name": "user sees information on the planning period",
-  "keyword": "* "
-});
-formatter.match({});
-formatter.result({
-  "status": "undefined"
 });
 });
