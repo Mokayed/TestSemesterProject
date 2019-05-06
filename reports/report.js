@@ -13,20 +13,16 @@ formatter.step({
   "name": "user navigates to the teacher page",
   "keyword": "* "
 });
-formatter.match({
-  "location": "PlanningSeleniumTests.navigatePage()"
-});
+formatter.match({});
 formatter.result({
-  "status": "passed"
+  "status": "undefined"
 });
 formatter.step({
   "name": "user clicks on \u0027see planning period\u0027",
   "keyword": "* "
 });
-formatter.match({
-  "location": "PlanningSeleniumTests.clickBtn()"
-});
+formatter.match({});
 formatter.result({
-  "status": "passed"
+  "status": "undefined"
 });
 });
