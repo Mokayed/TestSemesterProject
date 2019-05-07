@@ -1,6 +1,7 @@
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
+import cucumber.api.java.en_old.Ða;
 import static org.hamcrest.MatcherAssert.assertThat;
 import org.hamcrest.core.IsEqual;
 import org.junit.runner.RunWith;
@@ -25,10 +26,15 @@ public class PlanningSeleniumTests {
 
     @Given("^user navigates to the teacher page$")
     public void navigatePage() {
-        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/chromedriver");
+        if (System.getProperty("os.name").startsWith("Linux")) {
+            System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/chromedriver");
+        } else if (System.getProperty("os.name").startsWith("Windows")) {
+            System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/chromedriver.exe");
+        }
         driver = new ChromeDriver();
         driver.get("http://localhost:8080/TestSemesterProject/teacherPage.jsp");
     }
+
     @When("user clicks on 'see planning period'")
     public void clickBtn() {
         driver.findElement(By.id("planBtn")).click();

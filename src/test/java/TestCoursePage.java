@@ -16,7 +16,11 @@ public class TestCoursePage {
 
     @BeforeAll
     public static void setup() {
-        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/chromedriver");
+        if (System.getProperty("os.name").startsWith("Linux")) {
+            System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/chromedriver");
+        } else if (System.getProperty("os.name").startsWith("Windows")) {
+            System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/chromedriver.exe");
+        }
     }
 
     @Test
@@ -34,7 +38,7 @@ public class TestCoursePage {
         //Close the browser
         driver.quit();
     }
-    
+
 //    @Test
 //    public void testClickOnCourse() {
 //        WebDriver driver = new ChromeDriver();
@@ -52,5 +56,4 @@ public class TestCoursePage {
 //        //Close the browser
 //        driver.quit();
 //    }
-
 }
