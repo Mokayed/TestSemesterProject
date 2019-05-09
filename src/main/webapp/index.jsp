@@ -1,3 +1,10 @@
+<%-- 
+    Document   : index
+    Created on : May 9, 2019, 1:59:57 PM
+    Author     : MoK
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -6,7 +13,7 @@
     </head>
 
     <body>
-        <form action="LoginServlet">
+        <form method="post" action="LoginServlet">
 
             Please enter your username 		
             <input type="text" name="un"/><br>		
@@ -17,5 +24,6 @@
             <input name="sub"  type="submit" value="submit">			
             <h1 id="invPara"></h1>
         </form>
+        ${idHej}
     </body>
 </html>

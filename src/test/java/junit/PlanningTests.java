@@ -1,3 +1,5 @@
+package junit;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,12 +11,15 @@ import Entities.Teacher;
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import org.junit.Test;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.equalTo;
 import org.hamcrest.core.IsEqual;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.platform.runner.JUnitPlatform;
 
-import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import static org.mockito.Mockito.mock;
@@ -27,7 +32,8 @@ import org.mockito.junit.MockitoJUnitRunner;
  *
  * @author hallur
  */
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(JUnitPlatform.class)
+@TestInstance(Lifecycle.PER_CLASS)
 public class PlanningTests {
 
     @Mock
@@ -39,7 +45,7 @@ public class PlanningTests {
     @Mock
     GregorianCalendar sCalendar, tCalendar;
 
-    @Before
+    @BeforeAll
     public void setUp() {
         teacher = mock(Teacher.class);
         semester = mock(Semester.class);
@@ -58,10 +64,10 @@ public class PlanningTests {
         when(teacher.getMonthDiffirence(teacher.getCurrentDate(), semester.getStartDate())) //2
                 .thenReturn((sCalendar.get(Calendar.MONTH) - tCalendar.get(Calendar.MONTH)));
 
-        assertThat(2, equalTo(teacher.getMonthDiffirence(teacher.getCurrentDate(), semester.getStartDate()))); //3
+        assertThat(1, equalTo(teacher.getMonthDiffirence(teacher.getCurrentDate(), semester.getStartDate()))); //3
 
-        verify(teacher, times(3)).getCurrentDate();
-        verify(semester, times(3)).getStartDate();
+        verify(teacher, times(7)).getCurrentDate();
+        verify(semester, times(7)).getStartDate();
     }
 
     @Test //this is for an example where teacher has to stop planning (1 month has passed)
@@ -78,8 +84,8 @@ public class PlanningTests {
                 .thenReturn((sCalendar.get(Calendar.MONTH) - tCalendar.get(Calendar.MONTH)));
 
         assertThat(1, equalTo(teacher.getMonthDiffirence(teacher.getCurrentDate(), semester.getStartDate()))); //3
-        verify(teacher, times(3)).getCurrentDate();
-        verify(semester, times(3)).getStartDate();
+        verify(teacher, times(4)).getCurrentDate();
+        verify(semester, times(4)).getStartDate();
     }
 
     @Test

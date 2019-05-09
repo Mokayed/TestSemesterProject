@@ -10,8 +10,5 @@ package Entities;
  * @author hallur
  */
 public class Student extends User{
-
-  
-    public void getSomething(){};
     
 }

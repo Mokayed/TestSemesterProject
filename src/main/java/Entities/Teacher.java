@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Entities;
 
 import interfaces.TeacherFunctions;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-/**
- *
- * @author hallur
- */
 public class Teacher extends User implements TeacherFunctions {
 
     private int id;

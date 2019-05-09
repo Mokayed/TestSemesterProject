@@ -1,3 +1,5 @@
+package junit;
+
 
 import data.CourseMapper;
 import org.junit.jupiter.api.Test;
