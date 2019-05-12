@@ -9,11 +9,13 @@ package junit;
 import Entities.Semester;
 import Entities.Teacher;
 import java.text.ParseException;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.Period;
+import static java.time.temporal.ChronoUnit.DAYS;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.equalTo;
-import org.hamcrest.core.IsEqual;
+import org.junit.FixMethodOrder;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -21,12 +23,12 @@ import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.junit.platform.runner.JUnitPlatform;
 
 import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 import org.mockito.Mock;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import org.mockito.junit.MockitoJUnitRunner;
 
 /**
  *
@@ -34,6 +36,7 @@ import org.mockito.junit.MockitoJUnitRunner;
  */
 @RunWith(JUnitPlatform.class)
 @TestInstance(Lifecycle.PER_CLASS)
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class PlanningTests {
 
     @Mock
@@ -43,62 +46,54 @@ public class PlanningTests {
     Semester semester;
 
     @Mock
-    GregorianCalendar sCalendar, tCalendar;
+    LocalDate sCalendar, tCalendar;
 
     @BeforeAll
     public void setUp() {
         teacher = mock(Teacher.class);
         semester = mock(Semester.class);
-        when(teacher.getCurrentDate()).thenReturn(new GregorianCalendar(2019, Calendar.JUNE, 01).getTime());
-        when(semester.getStartDate()).thenReturn(new GregorianCalendar(2019, Calendar.AUGUST, 01).getTime());
+        when(teacher.getCurrentDate()).thenReturn(LocalDate.of(2019,Month.JUNE,1));
+        when(semester.getStartDate()).thenReturn(LocalDate.of(2019,Month.AUGUST,1));
 
     }
 
-    @Test //this is for an example where teacher can start planning...
-    public void twoMonthsTest() throws ParseException {
-        sCalendar = new GregorianCalendar();
-        sCalendar.setTime(semester.getStartDate()); //1
-        tCalendar = new GregorianCalendar();
-        tCalendar.setTime(teacher.getCurrentDate()); //1
+    @Test //2 months until semester start...
+    public void monthsTest1() throws ParseException {
+        sCalendar = semester.getStartDate();
+        tCalendar = teacher.getCurrentDate();
 
         when(teacher.getMonthDiffirence(teacher.getCurrentDate(), semester.getStartDate())) //2
-                .thenReturn((sCalendar.get(Calendar.MONTH) - tCalendar.get(Calendar.MONTH)));
+                .thenReturn(Period.between(
+            tCalendar.withDayOfMonth(1),
+            sCalendar.withDayOfMonth(1)).getMonths());
+
+        assertThat(2, equalTo(teacher.getMonthDiffirence(teacher.getCurrentDate(), semester.getStartDate()))); //3
+
+        verify(teacher, times(3)).getCurrentDate();
+        verify(semester, times(3)).getStartDate();
+    }
+
+    @Test //1 month until semester start...
+    public void monthsTest2() throws ParseException {
+        sCalendar = semester.getStartDate();
+        tCalendar = teacher.getCurrentDate().plusMonths(1);
+
+        when(teacher.getMonthDiffirence(teacher.getCurrentDate(), semester.getStartDate())) //2
+                .thenReturn(Period.between(
+            tCalendar.withDayOfMonth(1),
+            sCalendar.withDayOfMonth(1)).getMonths());
 
         assertThat(1, equalTo(teacher.getMonthDiffirence(teacher.getCurrentDate(), semester.getStartDate()))); //3
 
-        verify(teacher, times(7)).getCurrentDate();
-        verify(semester, times(7)).getStartDate();
+        verify(teacher, times(6)).getCurrentDate();
+        verify(semester, times(6)).getStartDate();
     }
-
-    @Test //this is for an example where teacher has to stop planning (1 month has passed)
-    public void oneMonthTest() throws ParseException {
-        when(teacher.getCurrentDate()).thenReturn(new GregorianCalendar(2019, Calendar.JULY, 01).getTime());
-        when(semester.getStartDate()).thenReturn(new GregorianCalendar(2019, Calendar.AUGUST, 01).getTime());
-
-        sCalendar = new GregorianCalendar();
-        sCalendar.setTime(semester.getStartDate()); //1
-        tCalendar = new GregorianCalendar();
-        tCalendar.setTime(teacher.getCurrentDate()); //1
-
-        when(teacher.getMonthDiffirence(teacher.getCurrentDate(), semester.getStartDate())) //2
-                .thenReturn((sCalendar.get(Calendar.MONTH) - tCalendar.get(Calendar.MONTH)));
-
-        assertThat(1, equalTo(teacher.getMonthDiffirence(teacher.getCurrentDate(), semester.getStartDate()))); //3
-        verify(teacher, times(4)).getCurrentDate();
-        verify(semester, times(4)).getStartDate();
-    }
-
-    @Test
-    public void deadLineTest() {
-        sCalendar = new GregorianCalendar();
-        sCalendar.setTime(semester.getStartDate());
-        sCalendar.add(Calendar.MONTH, -1); //subtract a month (the deadline date)
-
-        tCalendar = new GregorianCalendar();
-        tCalendar.setTime(teacher.getCurrentDate()); //1
-        long diff = sCalendar.getTime().getTime() - tCalendar.getTime().getTime();
-        int daysUntilDeadLine = (int) (diff / (1000 * 60 * 60 * 24));
-        System.out.println("you have " + daysUntilDeadLine + " days left");
-        assertThat(30, equalTo(daysUntilDeadLine));
+    @Test //amount of days for planning deadline... (1 month after planning-start)
+    public void monthsTest3() {
+        sCalendar = semester.getStartDate().minusMonths(1);
+        tCalendar = teacher.getCurrentDate()/*.plusDays(1)*/;
+        int days = (int) DAYS.between(tCalendar, sCalendar);
+        System.out.println("you have " + days + " days left");
+        assertThat(30, equalTo(days));
     }
 }
