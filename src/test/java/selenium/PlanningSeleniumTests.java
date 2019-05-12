@@ -54,7 +54,7 @@ public class PlanningSeleniumTests {
     }
 
     @When("^the teacher logs in$")
-    public void bla() {
+    public void bla() throws InterruptedException {
         if (System.getProperty("os.name").startsWith("Linux")) {
             System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/chromedriver");
         } else if (System.getProperty("os.name").startsWith("Windows")) {
@@ -65,9 +65,10 @@ public class PlanningSeleniumTests {
         List<WebElement> rows = driver.findElements(By.tagName("input"));
         rows.get(0).sendKeys("Kasper");
         rows.get(1).sendKeys("321");
+        Thread.sleep(1000);
         rows.get(2).click();
-
         driver.findElement(By.id("planBtn")).click();
+        Thread.sleep(1000);
         driver.findElement(By.id("tDate")).sendKeys(teacherDate.toString());
         driver.findElement(By.id("sDate")).sendKeys(semesterDate.toString());
     }
