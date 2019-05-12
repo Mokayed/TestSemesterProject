@@ -13,6 +13,7 @@ import static java.time.temporal.ChronoUnit.DAYS;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import org.hamcrest.core.IsEqual;
 import org.junit.runner.RunWith;
@@ -77,6 +78,7 @@ public class PlanningSeleniumTests {
         semesterDate = semesterDate.minusMonths(1);
         int days = (int) DAYS.between(teacherDate, semesterDate);
         System.out.println("days: " + days);
+        assertThat(30, is(days));
         driver.findElement(By.id("days")).sendKeys("" +days);
     }
 }
