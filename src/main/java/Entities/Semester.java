@@ -1,6 +1,7 @@
 package Entities;
 
 import interfaces.semesterFunctions;
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -8,19 +9,19 @@ import java.util.Date;
  * @author hallur
  */
 public class Semester implements semesterFunctions {
-    private Date startDate;
+    private LocalDate startDate;
     private String name;
 
-    public Semester(Date startDate, String name) {
+    public Semester(LocalDate startDate, String name) {
         this.startDate = startDate;
         this.name = name;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 

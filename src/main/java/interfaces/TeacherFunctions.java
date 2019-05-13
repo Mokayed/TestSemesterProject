@@ -5,6 +5,7 @@
  */
 package interfaces;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -13,7 +14,7 @@ import java.util.GregorianCalendar;
  * @author hallur
  */
 public interface TeacherFunctions {
-    int getMonthDiffirence(Date date1, Date date2);
-    GregorianCalendar dateToGregorianCalendar(Date date);
-    int daysUntilDeadLine(Date teacherDate, Date semesterDate);
+    int getMonthDiffirence(LocalDate date1, LocalDate date2);
+    LocalDate dateToGregorianCalendar(LocalDate date);
+    int daysUntilDeadLine(LocalDate teacherDate, LocalDate semesterDate);
 }

@@ -1,6 +1,7 @@
 package Entities;
 
 import interfaces.TeacherFunctions;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -10,16 +11,16 @@ public class Teacher extends User implements TeacherFunctions {
     private String name;
     private String education;
     private Semester semester;
-    private Date lastActive;
-    private Date currentDate;
+    private LocalDate lastActive;
+    private LocalDate currentDate;
 
-    public Teacher(String name, String education, Date lastActive) {
+    public Teacher(String name, String education, LocalDate lastActive) {
         this.name = name;
         this.education = education;
         this.lastActive = lastActive;
     }
 
-    public Teacher(Semester semester, Date currentDate) {
+    public Teacher(Semester semester, LocalDate currentDate) {
         this.semester = semester;
         this.currentDate = currentDate;
     }
@@ -48,11 +49,11 @@ public class Teacher extends User implements TeacherFunctions {
         this.education = education;
     }
 
-    public Date getLastActive() {
+    public LocalDate getLastActive() {
         return lastActive;
     }
 
-    public void setLastActive(Date lastActive) {
+    public void setLastActive(LocalDate lastActive) {
         this.lastActive = lastActive;
     }
 
@@ -64,26 +65,26 @@ public class Teacher extends User implements TeacherFunctions {
         this.semester = semester;
     }
 
-    public Date getCurrentDate() {
+    public LocalDate getCurrentDate() {
         return currentDate;
     }
 
-    public void setCurrentDate(Date currentDate) {
+    public void setCurrentDate(LocalDate currentDate) {
         this.currentDate = currentDate;
     }
 
     @Override
-    public int getMonthDiffirence(Date date1, Date date2) {
+    public int getMonthDiffirence(LocalDate date1, LocalDate date2) {
         return 0; //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public GregorianCalendar dateToGregorianCalendar(Date date) {
+    public LocalDate dateToGregorianCalendar(LocalDate date) {
         return null; //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public int daysUntilDeadLine(Date teacherDate, Date semesterDate) {
+    public int daysUntilDeadLine(LocalDate teacherDate, LocalDate semesterDate) {
         return 0; //To change body of generated methods, choose Tools | Templates.
     }
 

@@ -21,9 +21,10 @@
             
      <h3>Welcome ${sessionScope.currentSessionUser }</h3>		
          </center>
+    teacherDate<input id='tDate'>semesterStart</input><input id='sDate'>deadline in days</input><input id='days'></input>
         <script>
             document.getElementById("planBtn").onclick = () => {
-                document.getElementById("here").innerHTML = "when we can login with the teacher object, i can then setup the dates on this page";
+                document.getElementById("here").innerHTML = "you clicked...";
             }
         </script>
     </body>
