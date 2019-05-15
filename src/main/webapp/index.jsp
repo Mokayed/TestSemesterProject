@@ -24,6 +24,5 @@
             <input name="sub"  type="submit" value="submit">			
             <h1 id="invPara"></h1>
         </form>
-        ${idHej}
     </body>
 </html>

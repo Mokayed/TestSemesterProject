@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-  <h1 name="user">${sessionScope.userRole }</h1>
+  <h1 name="user">Admin</h1>
     </body>
      <center>
             

@@ -13,7 +13,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1 name="user">${sessionScope.userRole }</h1>
+        <h1 name="user">Teacher</h1>
         <h1>Hello from teacher</h1>
         <button id="planBtn">see planning period</button>
         <h1 id="here"></h1>

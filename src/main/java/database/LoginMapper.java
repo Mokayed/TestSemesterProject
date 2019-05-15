@@ -6,7 +6,6 @@
 package database;
 
 import Entities.User;
-import database.DatabaseConnector;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,26 +24,51 @@ public class LoginMapper {
         dbc.setDataSource(ds);
     }
 
-    public User getUser(int id) throws SQLException {
-        dbc.open();
+    public boolean checkUser(String userName, String password) throws SQLException {
+        try {
+            dbc.open();
 
-        String sql = "select * from User WHERE id = ?";
+            String sql = "select * from User WHERE userName = ? and password = ?";
+            PreparedStatement pstmt = dbc.preparedStatement(sql);
+            //pstmt.setInt(1, id);
+            pstmt.setString(1, userName);
+            pstmt.setString(2, password);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                userName = rs.getString("userName");
+                password = rs.getString("password");
+                String role = rs.getString("role");
+                User user = new User();
+                user.setUserName(userName);
+                user.setPassword(password);
+                user.setRole(role);
+                //System.out.println(user.getRole());
+                System.out.println(user.toString());
+                return true;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return false;
+    }
+
+    public User getUser(String userName, String password) throws SQLException {
+        dbc.open();
+        String sql = "select * from User WHERE userName = ? and password = ?";
         PreparedStatement pstmt = dbc.preparedStatement(sql);
-        pstmt.setInt(1, id);
+        pstmt.setString(1, userName);
+        pstmt.setString(2, password);
         ResultSet rs = pstmt.executeQuery();
         while (rs.next()) {
-            String userName = rs.getString("userName");
-            String password = rs.getString("password");
+            userName = rs.getString("userName");
+            password = rs.getString("password");
             String role = rs.getString("role");
             User user = new User();
             user.setUserName(userName);
             user.setPassword(password);
             user.setRole(role);
-            System.out.println(user.getRole());
-
             return user;
         }
         return null;
     }
-
 }

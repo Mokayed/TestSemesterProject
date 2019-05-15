@@ -3,20 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package integration;
+package Servlets;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
 
-/**
- *
- * @author hallur
- */
-public class DataSourceMysql {
-
+public class DBConnector {
     private MysqlDataSource dataSource = new MysqlDataSource();
-
-    public DataSourceMysql() {
-        try {
+    
+    public DBConnector()
+    {
+        try
+        {
             dataSource.setServerName("localhost");
             dataSource.setPort(3306);
             dataSource.setDatabaseName("LESdb?allowPublicKeyRetrieval=true&useSSL=false");
@@ -24,12 +21,15 @@ public class DataSourceMysql {
             dataSource.setPassword("123");
             dataSource.setUseSSL(false);
             dataSource.setAllowMultiQueries(true);
-        } catch (Exception e) {
+        }
+        catch(Exception e)
+        {
             e.printStackTrace();
         }
     }
-
-    public MysqlDataSource getDataSource() {
+    
+    public MysqlDataSource getDataSource()
+    {
         return dataSource;
-    }
+}
 }

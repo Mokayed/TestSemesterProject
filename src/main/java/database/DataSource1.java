@@ -3,19 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package integration;
+package database;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
 
 /**
  *
- * @author hallur
+ * @author MoK
  */
-public class DataSourceMysql {
+public class DataSource1 {
 
     private MysqlDataSource dataSource = new MysqlDataSource();
 
-    public DataSourceMysql() {
+    public DataSource1() {
         try {
             dataSource.setServerName("localhost");
             dataSource.setPort(3306);

@@ -5,6 +5,9 @@
  */
 package data;
 
+import Entities.User;
+import database.DataSource1;
+import database.LoginMapper;
 import java.sql.*;
 
 /**
@@ -13,7 +16,9 @@ import java.sql.*;
  */
 public class DeleteLater {
 
-    public static void main(String args[]) {
+    public static void main(String args[]) throws SQLException {
+        
+
 
     }
 }

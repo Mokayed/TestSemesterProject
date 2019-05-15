@@ -1,6 +1,9 @@
 package Servlets;
 
 import Entities.User;
+import database.DataSource1;
+import database.LogicForLogin;
+import database.LoginMapper;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -21,8 +24,6 @@ import javax.servlet.http.HttpSession;
 @WebServlet(urlPatterns = {"/LoginServlet"})
 public class LoginServlet extends HttpServlet {
 
-    List<User> list = new ArrayList<>();
-
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -34,47 +35,24 @@ public class LoginServlet extends HttpServlet {
      */
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, java.io.IOException {
-        List<User> list = new ArrayList<>();
-        list.add(new User("Student", "Lasse", "321"));
-        list.add(new User("Admin", "Mo", "321"));
-        list.add(new User("Student", "Hallur", "123"));
-        list.add(new User("Teacher", "Kasper", "321"));
-        list.add(new User("Admin", "John", "321"));
-
+            throws ServletException, java.io.IOException {;
+        LoginMapper lm = new LoginMapper();
+        lm.setDataSource(new DataSource1().getDataSource());
+        boolean susuccessfulLogin;
         try {
             String usernameInput = request.getParameter("un");
             String passwordInput = request.getParameter("pw");
-            //HttpSession session = request.getSession();
-            if (usernameInput.equals("Kasper") && passwordInput.equals("321")) {
+            susuccessfulLogin = lm.checkUser(usernameInput, passwordInput);
+            if (susuccessfulLogin == true) {
+                User user = lm.getUser(usernameInput, passwordInput);
                 HttpSession session = request.getSession();
-                session.setAttribute("teacher", list);
-                response.sendRedirect("teacherPage.jsp");
-                return;
-            }
-            for (User user : list) {
-                if (user.getUserName().equals(usernameInput) && user.getPassword().equals(passwordInput)) {
-                    HttpSession session = request.getSession();
-                    session.setAttribute("currentSessionUser", user.getUserName());
-                    session.setAttribute("userRole", user.getRole());
-                    if (user.getRole().equals("Teacher")) {
-                        response.sendRedirect("teacherPage.jsp");
-                        return;
-                    }
-                    if (user.getRole().equals("Student")) {
-                        //HttpSession session = request.getSession(true);       
-                        response.sendRedirect("studentPage.jsp");
-                        return;
-                    }
-                    if (user.getRole().equals("Admin")) {
-                        //HttpSession session = request.getSession(true);       
-                        response.sendRedirect("adminPage.jsp");
-                        return;
-                    }
-                } else {
-                    response.sendRedirect("invalidLogin.jsp"); //error page 
-                    return;
-                }
+                session.setAttribute("currentSessionUser", usernameInput);
+                session.setAttribute("userRole", user.getRole());
+                LogicForLogin lge = new LogicForLogin();
+                String role = lge.Login(user.getRole());
+                response.sendRedirect(role);
+            } else {
+                response.sendRedirect("invalidLogin.jsp"); //error page 
             }
         } catch (Throwable theException) {
             System.out.println(theException);
