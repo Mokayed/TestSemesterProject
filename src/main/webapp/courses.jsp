@@ -1,4 +1,4 @@
-<%@page import="data.CourseMapper"%>
+<%@page import="database.CourseMapper"%>
 <%@page import="Entities.Category"%>
 <%@page import="Entities.Teacher"%>
 <%@page import="Entities.Subject"%>

@@ -5,11 +5,13 @@
  */
 package integration;
 
-import Entities.Semester;
-import Entities.Teacher;
-import Entities.User;
+import entity.Semester;
+import entity.Teacher;
+import entity.User;
 import database.DatabaseConnector;
 import database.PlanningMapper;
+import database.TestDataSource;
+import database.TestDatabaseMapper;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -37,41 +39,44 @@ import org.mockito.MockitoAnnotations;
  */
 @RunWith(JUnitPlatform.class)
 public class T_E_S_T_PlanningMapper {
+
     private static PlanningMapper p = new PlanningMapper();
     private static Teacher teacher;
     private static User teacherUser;
     private static Semester semester;
+
     @BeforeAll
     public static void beforeAll() {
-        teacher = mock(Teacher.class);
-        teacherUser = teacher;
-        semester = mock(Semester.class);
-        p.setDataSource(new DataSourceMysql().getDataSource());
-        when(teacher.getCurrentDate()).thenReturn(LocalDate.of(2019,Month.JUNE,1));
-        when(teacherUser.getUserName()).thenReturn("Kasper");
-        when(teacherUser.getPassword()).thenReturn("321");
-        when(teacherUser.getRole()).thenReturn("teacher");
-        when(semester.getStartDate()).thenReturn(LocalDate.of(2019,Month.AUGUST,1));
+        TestDataSource d = new TestDataSource();
+        TestDatabaseMapper t = new TestDatabaseMapper();
+        t.setDataSource(d.getDataSource());
+        t.createTestDatabase();
+        p.setDataSource(d.getDataSource());
+        teacherUser = new User("Teacher", "Kasper2", "123");
+        semester = new Semester(LocalDate.of(2019, Month.AUGUST, 1), "Test Semester");
+        teacher = new Teacher("some_name", semester, LocalDate.of(2019, Month.JUNE, 1));
+        teacher.setEducation("some_education");
+        p.insertUser(teacherUser);
+        p.insertSemester(semester);
+        int userId = p.getPrimaryKeyIdFromTable("User");
+        int semesterId = p.getPrimaryKeyIdFromTable("Semester");
+        p.insertTeacher(teacher, userId, semesterId);
     }
-    
-    @BeforeEach
-    public void setUp() {
-        MockitoAnnotations.initMocks(this);
-    }
-    
-    @Test
-    public void insertTeacherAndSemester(){
-            p.insertUser(teacherUser);
-            p.insertSemester(semester);
-            int userId = p.getPrimaryKeyIdFromTable("User");
-            int semesterId = p.getPrimaryKeyIdFromTable("Semester");
-            p.insertTeacher(teacher, userId, semesterId);
-    }
-    
+
+    /*@Test
+    public void insertTeacherAndSemester() {
+        p.insertUser(teacherUser);
+        p.insertSemester(semester);
+        int userId = p.getPrimaryKeyIdFromTable("User");
+        int semesterId = p.getPrimaryKeyIdFromTable("Semester");
+        p.insertTeacher(teacher, userId, semesterId);
+    }*/
+
     @Test
     public void testDaysDifference() {
-        LocalDate teacher = p.getTeacherDate();
-        LocalDate semester = p.getSemesterDate();
-        assertThat(61L, is(DAYS.between(teacher, semester))); //61 days.
+        LocalDate teacherD = p.getTeacherDate(teacher.getEducation());
+        LocalDate semesterD = p.getSemesterDate(semester.getName());
+        System.out.println(teacherD + ", " + semesterD);
+        assertThat(61L, is(DAYS.between(teacherD, semesterD))); //61 days.
     }
 }

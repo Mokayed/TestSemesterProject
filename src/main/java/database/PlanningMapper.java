@@ -5,9 +5,9 @@
  */
 package database;
 
-import Entities.Semester;
-import Entities.Teacher;
-import Entities.User;
+import entity.Semester;
+import entity.Teacher;
+import entity.User;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -74,9 +74,10 @@ public class PlanningMapper {
 
             dbc.open();
 
-            String sql = "insert into Semester(name)values(?)";
+            String sql = "insert into Semester(name, startDate)values(?,?)";
             PreparedStatement pstmt = dbc.preparedStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            pstmt.setString(1, semester.getStartDate().toString());
+            pstmt.setString(1, semester.getName());
+            pstmt.setString(2, semester.getStartDate().toString());
             pstmt.executeUpdate();
             pstmt.close();
         } catch (SQLException ex) {
@@ -84,6 +85,38 @@ public class PlanningMapper {
         } finally {
             dbc.close();
         }
+    }
+
+    public Teacher getTeacher(String userName) {
+        Teacher teacher = null;
+        try {
+            dbc.open();
+            String sql = "select currentDate as tDate, userName as uName, startDate as sDate,name as sName from Teacher inner join User on Teacher.userId = User.id inner join Semester on Teacher.semesterId = Semester.id where User.userName = ?;";
+            PreparedStatement pstmt = dbc.preparedStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setString(1, userName);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                //String name, Semester semester, LocalDate currentDate
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate sDate = LocalDate.parse(rs.getString("sDate"), formatter);
+                LocalDate tDate = LocalDate.parse(rs.getString("tDate"), formatter);
+                teacher = new Teacher(rs.getString("uName"), new Semester(sDate,
+                        rs.getString("sName")), tDate
+                );
+
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            dbc.close();
+        }
+        return teacher;
+    }
+
+    public static void main(String[] args) {
+        PlanningMapper pm = new PlanningMapper();
+        pm.setDataSource(new ProductionDataSource().getDataSource());
+        System.out.println(pm.getTeacher("Kasper").toString());
     }
 
     public void insertTeacher(Teacher teacher, int userId, int semesterId) {
@@ -137,47 +170,56 @@ public class PlanningMapper {
         return id;
     }
 
-    public LocalDate getTeacherDate() {
+    public LocalDate getTeacherDate(String education) {
         LocalDate date = null;
         try {
 
             dbc.open();
 
-            String sql = "select currentDate from Teacher";
+            String sql = "select currentDate from Teacher where education = ?";
             PreparedStatement pstmt = dbc.preparedStatement(sql);
+            pstmt.setString(1, education);
             ResultSet r = pstmt.executeQuery();
-            if(r.next()){
+            if (r.next()) {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 date = LocalDate.parse(r.getString("currentDate"), formatter);
             }
-            
+
             pstmt.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         } finally {
             dbc.close();
-        } return date;
+        }
+        return date;
     }
 
-    public LocalDate getSemesterDate() {
+    public LocalDate getSemesterDate(String name) {
         LocalDate date = null;
         try {
 
             dbc.open();
 
-            String sql = "select name from Semester";
+            String sql = "select startDate from Semester where name = ?";
             PreparedStatement pstmt = dbc.preparedStatement(sql);
+            pstmt.setString(1, name);
             ResultSet r = pstmt.executeQuery();
-            if(r.next()){
+            if (r.next()) {
+                System.out.println("are we ever in here");
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                date = LocalDate.parse(r.getString("name"), formatter);
+                date = LocalDate.parse(r.getString("startDate"), formatter);
             }
-            
+
             pstmt.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         } finally {
             dbc.close();
-        } return date;
+        }
+        return date;
+    }
+
+    public LocalDate getSemesterDate(LocalDate semester) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
