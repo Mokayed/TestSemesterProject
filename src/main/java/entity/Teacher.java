@@ -2,8 +2,6 @@ package entity;
 
 import interfaces.TeacherFunctions;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.GregorianCalendar;
 
 public class Teacher extends User implements TeacherFunctions {
 

@@ -29,7 +29,7 @@ public class TestDatabaseMapper {
     public void createTestDatabase() {
         try {
             dbc.open();
-            FileReader fr = new FileReader(new File(System.getProperty("user.dir") + "/src/test/java/SqlScripts/LESTestDB.sql"));
+            FileReader fr = new FileReader(new File(System.getProperty("user.dir") + "/src/test/java/sql/LESTestDB.sql"));
             BufferedReader br = new BufferedReader(fr);
             String s = new String();
             StringBuffer sb = new StringBuffer();

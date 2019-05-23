@@ -13,7 +13,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 @RunWith(JUnitPlatform.class)
-public class U_I_Course {
+public class TestCourseUI {
 
     WebDriver driver;
 

@@ -38,7 +38,7 @@ import org.mockito.MockitoAnnotations;
  * @author hallur
  */
 @RunWith(JUnitPlatform.class)
-public class T_E_S_T_PlanningMapper {
+public class TestPlanningMapper {
 
     private static PlanningMapper p = new PlanningMapper();
     private static Teacher teacher;

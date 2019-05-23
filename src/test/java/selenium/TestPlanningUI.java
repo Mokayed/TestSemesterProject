@@ -27,7 +27,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
  * @author hallur
  */
 @RunWith(MockitoJUnitRunner.class)
-public class U_I_Planning {
+public class TestPlanningUI {
 
     WebDriver driver;
     private LocalDate teacherDate;

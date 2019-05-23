@@ -32,7 +32,7 @@ import org.mockito.MockitoAnnotations;
  */
 @RunWith(JUnitPlatform.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class M_O_C_K_Database {
+public class TestMockDatabase {
 
     private static LoginMapper dataMapper;
 

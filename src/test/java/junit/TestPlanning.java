@@ -1,11 +1,4 @@
 package junit;
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 import entity.Semester;
 import entity.Teacher;
 import java.text.ParseException;
@@ -21,7 +14,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.junit.platform.runner.JUnitPlatform;
-
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.mockito.Mock;
@@ -29,7 +21,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-
 /**
  *
  * @author hallur
@@ -37,7 +28,7 @@ import static org.mockito.Mockito.when;
 @RunWith(JUnitPlatform.class)
 @TestInstance(Lifecycle.PER_CLASS)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class M_O_C_K_Planning {
+public class TestPlanning {
 
     @Mock
     Teacher teacher;

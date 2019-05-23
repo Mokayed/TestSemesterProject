@@ -13,7 +13,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class U_I_Login {
+public class TestLoginUI {
 
     WebDriver driver;
     String userName;

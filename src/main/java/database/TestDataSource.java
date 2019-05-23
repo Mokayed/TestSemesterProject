@@ -20,7 +20,6 @@ public class TestDataSource {
         try {
             dataSource.setServerName("localhost");
             dataSource.setPort(3306);
-
             dataSource.setDatabaseName("LESdbTest?allowPublicKeyRetrieval=true&useSSL=false");
             dataSource.setUser("user");
             dataSource.setPassword("1234");
