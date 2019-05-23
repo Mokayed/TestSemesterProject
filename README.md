@@ -5,7 +5,7 @@
 
 <h1>Setup <g-emoji class="g-emoji" alias="page_with_curl" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c3.png">📃</g-emoji></h1>
 <p>1-Clone the project</p>
-<p>2-Then run the this production-sqlScript and <a href="https://github.com/Mokayed/TestSemesterProject/blob/master/src/test/java/sql/LESTestDB.sql">test-sqlScrpit</a> into your sql-server</p>
+<p>2-Then run the this <a href="https://github.com/Mokayed/TestSemesterProject/blob/master/src/main/Files/LESProductionDB.sql">production-sqlScript</a> and <a href="https://github.com/Mokayed/TestSemesterProject/blob/master/src/test/java/sql/LESTestDB.sql">test-sqlScrpit</a> into your sql-server</p>
 <p>3-Open the project in you favorite IDE</p>
 <p>3-Clean build the project</p>
 <p>4-run the project</p>
