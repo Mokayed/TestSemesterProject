@@ -1,6 +1,6 @@
 # TestSemesterProject
 
-| By 
+> By _Group 4 - Murched Kayed, Halur vid Neyst & Zaeem Shafiq_
 
 ### Team collaboration
 _How do you visualize and communicate to all team members what is going on in the project (what is the team working on at the moment, what impediments may be in its way, how much work has been completed, and whether or not the regressions tests are currently passing)?_
