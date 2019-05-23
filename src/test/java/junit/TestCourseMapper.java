@@ -19,7 +19,7 @@ import org.junit.runner.RunWith;
  * @author hallur
  */
 @RunWith(JUnitPlatform.class)
-public class T_E_S_T_CourseMapper {
+public class TestCourseMapper {
 
     @Test
     public void testDeleteCourse() {

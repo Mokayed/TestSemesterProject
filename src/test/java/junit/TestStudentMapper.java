@@ -23,7 +23,7 @@ import org.junit.runners.Suite;
  * @author Zaeem
  */
 @RunWith(JUnitPlatform.class)
-public class T_E_S_T_StudentMapper {
+public class TestStudentMapper {
 
     private int age;
     private String output;

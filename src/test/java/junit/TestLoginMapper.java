@@ -18,11 +18,11 @@ import org.junit.Test;
  *
  * @author MoK
  */
-public class T_E_S_T_LoginMapper {
+public class TestLoginMapper {
 
     LoginMapper lm;
 
-    public T_E_S_T_LoginMapper() {
+    public TestLoginMapper() {
         lm = new LoginMapper();
         lm.setDataSource(new TestDataSource().getDataSource());
     }
