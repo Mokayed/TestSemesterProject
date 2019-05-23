@@ -1,8 +1,8 @@
 <%@page import="database.CourseMapper"%>
-<%@page import="Entities.Category"%>
-<%@page import="Entities.Teacher"%>
-<%@page import="Entities.Subject"%>
-<%@page import="Entities.Course"%>
+<%@page import="entity.Category"%>
+<%@page import="entity.Teacher"%>
+<%@page import="entity.Subject"%>
+<%@page import="entity.Course"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

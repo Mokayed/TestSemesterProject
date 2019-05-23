@@ -1,5 +1,5 @@
 <%@page import="database.CourseMapper"%>
-<%@page import="Entities.Course"%>
+<%@page import="entity.Course"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
