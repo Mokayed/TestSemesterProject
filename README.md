@@ -16,3 +16,4 @@
 - As a teacher, I want to know when the planning period starts/ends so that I can finish the planning in time.
 - As a teacher, I want to be notified when to start planning so that I know when I have to start preparing for the course.
 - As a teacher/student, I want to see a calendar of the two semesters so that I know when to show up in class.
+- As a student, I want to be able to create a user account so that I can make use of the system.
