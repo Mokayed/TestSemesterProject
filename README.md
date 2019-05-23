@@ -1,7 +1,7 @@
 # TestSemesterProject
 
 > _By Group 4 - Murched Kayed, Halur vid Neyst & Zaeem Shafiq_
-<p>This is a solution to the <a href="https://github.com/datsoftlyngby/soft2019spring-test/blob/master/Assignments/TestSemesterProject.pdf">TestSemesterProject</a>, this solution is made using java and SQL, for more detailes about the project read the following <a href="">pdf</a>.</p>
+<p>This is a solution to the <a href="https://github.com/datsoftlyngby/soft2019spring-test/blob/master/Assignments/TestSemesterProject.pdf">TestSemesterProject</a>, this solution is made using java and SQL, for more detailes about the project read the following <a href="https://github.com/Mokayed/TestSemesterProject/blob/master/TestSemesterRaport.pdf">rapport</a>.</p>
 <p>The software is made in a test-first manner, where tests at any level are designed before software
 implementation in some points, the focus of the project is on testing quality into a software product</p>
 
