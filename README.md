@@ -1,5 +1,10 @@
 # TestSemesterProject
 
+| By 
+
+### Team collaboration
+_How do you visualize and communicate to all team members what is going on in the project (what is the team working on at the moment, what impediments may be in its way, how much work has been completed, and whether or not the regressions tests are currently passing)?_
+
 ##### User Stories
 - As a user, I want to be able to login so that I can see everything i need from the school.
 - As a user, I want to see the courses that are available so that I can do what I want with the course.
@@ -17,3 +22,15 @@
 - As a teacher, I want to be notified when to start planning so that I know when I have to start preparing for the course.
 - As a teacher/student, I want to see a calendar of the two semesters so that I know when to show up in class.
 - As a student, I want to be able to create a user account so that I can make use of the system.
+
+### Test automation strategy
+_What criteria do you apply to make your automation effective and efficient?_
+
+### Non-functional requirements
+_How do you deal with non-functional issues?_
+
+### Testability
+_How testable is your solution? What are the reason(s) it turned out so testable/not testable._
+
+### Test design techniques
+_Which techniques have you used and how useful have they proven?_
