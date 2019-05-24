@@ -13,4 +13,4 @@ implementation in some points, the focus of the project is on testing quality in
 <p>2. Run this <a href="https://github.com/Mokayed/TestSemesterProject/blob/master/src/main/Files/LESProductionDB.sql">production-sqlScript</a> and <a href="https://github.com/Mokayed/TestSemesterProject/blob/master/src/test/java/sql/LESTestDB.sql">test-sqlScrpit</a> into your MySQL database.</p>
 <p>3. Open the project in your favorite IDE.</p>
 <p>4. Clean and build the project (You must have a Tomcat server running - if you haven't, please download it <a href="https://tomcat.apache.org/download-80.cgi">here</a><g-emoji class="g-emoji" alias="cat" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f431.png">🐱</g-emoji>).</p>
-<p>4. Run the project.</p>
+<p>5. Run the project.</p>
