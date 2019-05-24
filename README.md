@@ -6,7 +6,7 @@
 
 <p>This is a solution to the <a href="https://github.com/datsoftlyngby/soft2019spring-test/blob/master/Assignments/TestSemesterProject.pdf">TestSemesterProject</a>. This solution is made using Java (JSP) with Maven and a MySQL database.</p>
 <p>The software is made in a test-first manner, where tests at any level are designed before software
-implementation in some points, the focus of the project is on testing quality into a software product</p>
+implementation in some points, the focus of the project is on testing quality into a software product.</p>
 
 <h1>Setup <g-emoji class="g-emoji" alias="page_with_curl" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c3.png">📃</g-emoji></h1>
 <p>1. Clone the project.</p>
